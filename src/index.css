@@ -1,0 +1,51 @@
+/* 
+  Como estamos usando o Tailwind via CDN (script no index.html), 
+  não precisamos (e não devemos) usar os imports @tailwind aqui 
+  sem um processo de build configurado, pois isso quebra o CSS no navegador.
+*/
+
+body {
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
+
+/* SVG Filter for Liquid Goo Effect */
+.cursor-wrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  filter: url('#liquid-goo');
+}
+
+/* Only hide cursor on devices that have a mouse/pointer */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Disable custom cursor elements on touch devices */
+@media (hover: none) {
+  .cursor-wrapper, .fixed.w-\[6px\].h-\[6px\] {
+    display: none !important;
+  }
+}
